@@ -1,52 +1,79 @@
+import { DappMetadata, HashConnect } from "hashconnect";
+import { LedgerId } from "@hashgraph/sdk";
 import styles from "./Connect.module.scss";
-import { EthereumProvider } from "@walletconnect/ethereum-provider";
+import { useEffect, useState } from "react";
 const Connect = () => {
-  const connect = () => {
-    EthereumProvider.init({
-      projectId: import.meta.env.VITE_APP_WALLETCONNECT_PROJECT_ID,
-      showQrModal: true,
-      qrModalOptions: {
-        themeMode: "light",
-        mobileWallets: [
-          {
-            id: "1",
-            name: "WallyptoDev",
-            links: {
-              native: "wallypto://",
-              universal: "https://link.wallypto.io/ios",
-            },
-          },
-        ],
-      },
-      chains: [import.meta.env.VITE_APP_NETWORK_ID],
-      rpcMap: {
-        "295": "https://mainnet.hashio.io/api",
-        "296": "https://testnet.hashio.io/api",
-      },
-      methods: ["personal_sign", "eth_sendTransaction", "eth_sign"],
-      events: ["chainChanged", "accountsChanged"],
-      metadata: {
-        name: "My Dapp",
-        description: "My Dapp description",
-        url: "https://my-dapp.com",
-        icons: ["https://my-dapp.com/logo.png"],
-      },
-    })
-      .then((result) => {
-        console.log(`init providerClient: end`);
-        console.log(`onConnect: start`);
-        result
-          .connect()
-          .then((a) => {
-            console.log(`onConnect: success ${a}`);
-          })
-          .catch((err) => {
-            console.log(`onConnect: failed: ${err}`);
-          });
-      })
-      .catch((err) => {
-        console.error(`init providerClient: error: ${err}`);
+  const appMetadata: DappMetadata = {
+    name: import.meta.env.VITE_APP_NAME,
+    description: "hedera toilet dapp",
+    icons: [],
+    url: "",
+  };
+  const [hashconnect, setHashconnect] = useState<HashConnect>();
+  const [connected, setConnected] = useState<boolean>(false);
+  const [openedPairingModal, setOpenedPairingModal] = useState<boolean>(false);
+  useEffect(() => {
+    if (hashconnect == undefined) {
+      return;
+    }
+    if (!connected) {
+      hashconnect.pairingEvent.on((newPairing) => {
+        const pairing = JSON.parse(JSON.stringify(newPairing));
+        console.log(pairing.accountIds);
+        //   pairingData = newPairing;
       });
+
+      hashconnect.disconnectionEvent.on(() => {
+        setConnected(false);
+        setOpenedPairingModal(false);
+      });
+
+      hashconnect.connectionStatusChangeEvent.on((connectionStatus) => {
+        console.log(`connectionStatus ${connectionStatus}`);
+        //   state = connectionStatus;
+      });
+
+      hashconnect
+        .init()
+        .then(() => {
+          setConnected(true);
+        })
+        .catch((reason) => {
+          setConnected(false);
+          console.log(`init error: ${reason}`);
+        });
+      return;
+    }
+    if (openedPairingModal) {
+      return;
+    }
+    hashconnect
+      .openPairingModal()
+      .then(() => {
+        setOpenedPairingModal(true);
+        console.log(hashconnect.connectedAccountIds);
+      })
+      .catch((reason) => {
+        setOpenedPairingModal(false);
+        console.log(`open error: ${reason}`);
+      });
+  }, [hashconnect, connected, openedPairingModal]);
+
+  //   let state: HashConnectConnectionState =
+  //     HashConnectConnectionState.Disconnected;
+  //   let pairingData: SessionData;
+  const connect = async () => {
+    if (hashconnect != undefined) {
+      hashconnect.disconnect();
+    }
+    setHashconnect(
+      new HashConnect(
+        LedgerId.TESTNET,
+        import.meta.env.VITE_PROJECT_ID,
+        appMetadata,
+        true
+      )
+    );
   };
   return (
     <button className={styles.button} onClick={connect}>
