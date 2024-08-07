@@ -1,4 +1,5 @@
 import Connect from "../Button/Connect";
+import ConnectWallet from "../Button/ConnectWallet";
 import styles from "./Header.module.scss";
 const Header = () => {
   return (
@@ -14,6 +15,7 @@ const Header = () => {
           </ul>
         </nav>
         <Connect />
+        <ConnectWallet />
       </div>
     </header>
   );
