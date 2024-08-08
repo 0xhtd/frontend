@@ -1,5 +1,4 @@
 import { Component, ReactNode } from "react";
-import CardInfo from "../../components/Cards/CardInfo";
 import ToiletCard from "../../components/Cards/ToiletCard";
 
 class HomeContainer extends Component {
@@ -7,13 +6,24 @@ class HomeContainer extends Component {
     return (
       <>
         <div>
-          <button></button>
-        </div>
-        <div>
-          <CardInfo />
-        </div>
-        <div>
-          <ToiletCard name="아주좋습니다" number={3} />
+          <ToiletCard
+            name="장교빌딩"
+            type={"man"}
+            number={3}
+            available={true}
+          />
+          <ToiletCard
+            name="아주좋습니다"
+            type="disabled"
+            number={3}
+            available={false}
+          />
+          <ToiletCard
+            name="아주좋습니다"
+            type="woman"
+            number={3}
+            available={true}
+          />
         </div>
       </>
     );
