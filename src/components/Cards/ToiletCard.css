@@ -176,6 +176,11 @@ label {
 }
 
 /* App */
+[type="checkbox"]+.app .body {
+  background-color: #eeeeee;
+  color: rgb(0, 0, 0);
+}
+
 [type="checkbox"]:checked+.app .body {
   background-color: #26242E;
   color: white;
