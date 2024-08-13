@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.contents}>
-        <img className={styles.image} src="../public/logo.png"/>
+        <img className={styles.logo} src="../public/logo.png"/>
         <nav className={styles.navigation}>
           <ul>
             <li>
