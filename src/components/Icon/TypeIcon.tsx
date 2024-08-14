@@ -1,13 +1,14 @@
+//TODO - disabled icon
 const TypeIcon = ({ type }: { type: string }) => {
   if (type === "man") {
     return (
-      <div className="relative flex h-[50px] w-[50px] items-center justify-center">
+      <div className="relative flex h-[30px] w-[30px] items-center justify-center">
         <div className="absolute h-full w-full rounded-full bg-blue-100 p-4 shadow-sm shadow-[#00000050] ring-blue-400 duration-300 peer-checked:scale-110 peer-checked:ring-2"></div>
         <div className="absolute -z-10 h-full w-full scale-0 rounded-full bg-blue-200 duration-500 peer-checked:scale-[500%]"></div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="50px"
-          height="50px"
+          width="35px"
+          height="35px"
           viewBox="0 0 24 24"
           fill="none"
           className="absolute stroke-blue-400"
@@ -26,13 +27,13 @@ const TypeIcon = ({ type }: { type: string }) => {
     );
   } else if (type === "woman") {
     return (
-      <div className="relative flex h-[50px] w-[50px] items-center justify-center">
+      <div className="relative flex h-[30px] w-[30px] items-center justify-center">
         <div className="absolute h-full w-full rounded-full bg-pink-100 p-2 shadow-sm shadow-[#00000050] ring-pink-400 duration-300 peer-checked:scale-110 peer-checked:ring-2"></div>
         <div className="absolute -z-10 h-full w-full scale-0 rounded-full bg-pink-200 duration-500 peer-checked:scale-[500%]"></div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="35px"
-          height="35px"
+          width="25px"
+          height="25px"
           viewBox="0 0 24 24"
           fill="none"
           className="absolute fill-pink-400"
@@ -47,13 +48,13 @@ const TypeIcon = ({ type }: { type: string }) => {
     );
   } else if (type === "disabled") {
     return (
-      <div className="relative flex h-[50px] w-[50px] items-center justify-center">
+      <div className="relative flex h-[30px] w-[30px] items-center justify-center">
         <div className="absolute h-full w-full rounded-full bg-green-100 p-2 shadow-sm shadow-[#00000050] ring-neutral-400 duration-300 peer-checked:scale-110 peer-checked:ring-2"></div>
         <div className="absolute -z-10 h-full w-full scale-0 rounded-full bg-neutral-200 duration-500 peer-checked:scale-[500%]"></div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="50px"
-          height="50px"
+          width="30px"
+          height="30px"
           viewBox="0 0 24 24"
           fill="none"
           className="absolute stroke-neutral-400"
