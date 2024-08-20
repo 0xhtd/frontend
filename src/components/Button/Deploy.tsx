@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import instance from "../../lib/rest";
 import { HashConnectConnectionState } from "hashconnect";
+import styles from "./Button.module.scss";
 // import {
 //   ContractFunctionParameters,
 //   ContractExecuteTransaction,
@@ -59,7 +60,11 @@ const Deploy = () => {
 
     // console.log(mintTokenTxawait);
   };
-  return <button onClick={deploy}>Deploy</button>;
+  return (
+    <button className={styles.button} onClick={deploy}>
+      Deploy
+    </button>
+  );
 };
 
 export default Deploy;

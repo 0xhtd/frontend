@@ -3,7 +3,7 @@ import {
   HashConnect,
   HashConnectConnectionState,
 } from "hashconnect";
-import styles from "./Connect.module.scss";
+import styles from "./Button.module.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";

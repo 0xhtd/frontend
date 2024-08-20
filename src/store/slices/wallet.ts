@@ -1,17 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HashConnect, HashConnectConnectionState } from "hashconnect";
-import { AccountId } from "@hashgraph/sdk";
+import { AccountId, ContractId } from "@hashgraph/sdk";
 
 type WalletState = {
   connect: HashConnect | undefined;
   state: HashConnectConnectionState;
   accountId: AccountId | undefined;
+  contractId: ContractId | undefined;
 };
 
 const initialState: WalletState = {
   connect: undefined,
   state: HashConnectConnectionState.Disconnected,
   accountId: undefined,
+  contractId: undefined,
 };
 
 const walletSlice = createSlice({
@@ -27,8 +29,12 @@ const walletSlice = createSlice({
     setAccountId: (state, action: PayloadAction<AccountId>) => {
       state.accountId = action.payload;
     },
+    setContractId: (state, action: PayloadAction<ContractId>) => {
+      state.contractId = action.payload;
+    },
   },
 });
 
-export const { setConnect, setState, setAccountId } = walletSlice.actions;
+export const { setConnect, setState, setAccountId, setContractId } =
+  walletSlice.actions;
 export default walletSlice.reducer;

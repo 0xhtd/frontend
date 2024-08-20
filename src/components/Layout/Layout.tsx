@@ -6,7 +6,7 @@ const Layout = (props: { children: React.ReactNode }) => {
   return (
     <div className={styles.layout}>
       <Header />
-      <main className={styles.main}>{props.children}</main>
+      <main>{props.children}</main>
       <Footer />
     </div>
   );
