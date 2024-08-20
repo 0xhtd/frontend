@@ -2,6 +2,8 @@ import "./ToiletCard.css";
 import RestroomInfoIcons from "../Icon/RestroomInfoIcons";
 import { Status } from "../../../types/enum";
 import React, { useEffect, useState } from "react";
+import Enter from "../Button/Enter";
+import Exit from "../Button/Exit";
 export type Toilet = {
   name: string;
   location: { lat: number; lon: number };
@@ -11,13 +13,13 @@ export type Toilet = {
   cleanScore: number;
   available: boolean;
   status?: Status;
-}
+};
 
-const ToiletCard :React.FC<Toilet> = (props) => {
-  const [properties,setProperties] = useState(props);
-  useEffect(()=>{
+const ToiletCard: React.FC<Toilet> = (props) => {
+  const [properties, setProperties] = useState(props);
+  useEffect(() => {
     setProperties(props);
-  },[props]);
+  }, [props]);
   return (
     <>
       {/* <input id="switch" type="checkbox" checked={!properties.available}></input> */}
@@ -28,7 +30,11 @@ const ToiletCard :React.FC<Toilet> = (props) => {
           status={properties?.status}
           cleanScore={properties.cleanScore}
         />
-      </div>        
+      </div>
+      <div>
+        <Enter /> &nbsp;
+        <Exit />
+      </div>
     </>
   );
 };

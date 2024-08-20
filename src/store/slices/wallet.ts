@@ -7,6 +7,7 @@ type WalletState = {
   state: HashConnectConnectionState;
   accountId: AccountId | undefined;
   contractId: ContractId | undefined;
+  loaded: boolean;
 };
 
 const initialState: WalletState = {
@@ -14,6 +15,7 @@ const initialState: WalletState = {
   state: HashConnectConnectionState.Disconnected,
   accountId: undefined,
   contractId: undefined,
+  loaded: false,
 };
 
 const walletSlice = createSlice({
@@ -32,9 +34,12 @@ const walletSlice = createSlice({
     setContractId: (state, action: PayloadAction<ContractId>) => {
       state.contractId = action.payload;
     },
+    setLoad: (state, action: PayloadAction<boolean>) => {
+      state.loaded = action.payload;
+    },
   },
 });
 
-export const { setConnect, setState, setAccountId, setContractId } =
+export const { setConnect, setState, setAccountId, setContractId, setLoad } =
   walletSlice.actions;
 export default walletSlice.reducer;

@@ -1,0 +1,16 @@
+.button {
+  display: inline-flex;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten($color: rgb(120, 120, 139), $amount: 10%);
+  }
+
+  &:active {
+    background: darken($color: #775555, $amount: 0);
+  }
+}
